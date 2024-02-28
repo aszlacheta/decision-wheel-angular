@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="rotate">
+    <div class="circles-container">
+      <div *ngFor="let circle of circles; index as i" class="circle"
+           [style.transform]="'rotate(' + (i * (360 / circles.length)) + 'deg)'"></div>
+    </div>
+    <div class="options-container">
+      <app-wheel-option class="option" *ngFor="let option of options; index as i" [title]="option.title"
+                        [id]="option.id" [textColor]="option.textColor" [backgroundColor]="option.color"
+                        [optionsSize]="options.length"></app-wheel-option>
+    </div>
+    <div class="star-container"></div>
+  </div>
+
+  <div class="top-pointer-container">
+    <div class="top-pointer"></div>
+  </div>
+  <div class="footer-container">
+    <div class="footer"></div>
+  </div>
+</div>
