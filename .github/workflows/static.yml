@@ -22,30 +22,35 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x.x
+          cache: npm
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build -- -c production --base-href "https://aszlacheta.github.io/decision-wheel-angular/"
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist/decision-wheel-angular/browser'
   deploy:
+    needs: build
+    permissions:
+      repository-projects: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Adding Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 18
-      - name: Install Dependencies
-        run: npm install
-      - name: Build Angular App
-        run: npm run build
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: './dist/decision-wheel-angular/browser'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
