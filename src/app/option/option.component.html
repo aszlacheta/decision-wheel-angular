@@ -1,4 +1,7 @@
 <div class="option-row">
   <div>{{title}}</div>
-  <button (click)="onRemove()">X</button>
+  <button (click)="onRemove()" [disabled]="isRemoveDisabled" aria-label="Delete wheel option" color="primary"
+          mat-mini-fab>
+    <mat-icon>delete</mat-icon>
+  </button>
 </div>

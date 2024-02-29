@@ -1,35 +1,40 @@
 import { Injectable } from '@angular/core';
 import { WheelOption } from './wheel-option/wheel-option';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OptionsService {
-  private options: WheelOption[] = [
+  options: Subject<WheelOption[]> = new BehaviorSubject<WheelOption[]>([
     { id: 1, title: 'first' },
     { id: 2, title: 'second' },
     { id: 3, title: 'third' },
     { id: 4, title: 'fourth' },
-  ];
+  ]);
 
   constructor() {}
 
   getOptions(): Observable<WheelOption[]> {
-    return of(this.options);
+    return this.options;
   }
 
   addOption(optionTitle: WheelOption['title']): void {
     // TODO types
-    const newOption: WheelOption = {
-      id: this.options.length + 1,
-      title: optionTitle,
-    };
-    this.options.push(newOption);
+    this.options.pipe(take(1)).subscribe(current => {
+      const newOption: WheelOption = {
+        id: current.length + 1,
+        title: optionTitle,
+      };
+      this.options.next([...current, newOption]);
+    });
   }
 
   removeOption(index: number): void {
     // TODO types
-    this.options.splice(index, 1);
+    this.options.pipe(take(1)).subscribe(current => {
+      current.splice(index, 1);
+      this.options.next(current);
+    });
   }
 }

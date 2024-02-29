@@ -5,6 +5,9 @@ import { Observable } from 'rxjs';
 import { WheelOption } from '../wheel-option/wheel-option';
 import { OptionsService } from '../options.service';
 
+const ROTATION_DEGREES_MIN: number = 1500;
+const ROTATION_DEGREES_MAX: number = 2500;
+
 @Component({
   selector: 'app-wheel',
   standalone: true,
@@ -16,9 +19,21 @@ export class WheelComponent implements OnInit {
   circles: undefined[] = Array.from(Array(20));
   options: Observable<WheelOption[]>;
 
+  rotationDegrees: number = 0;
+
   constructor(private optionsService: OptionsService) {}
+
+  get rotationRandomDegrees() {
+    const min = Math.ceil(ROTATION_DEGREES_MIN);
+    const max = Math.floor(ROTATION_DEGREES_MAX);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 
   ngOnInit() {
     this.options = this.optionsService.getOptions();
+  }
+
+  onSpin(): void {
+    this.rotationDegrees += this.rotationRandomDegrees;
   }
 }
