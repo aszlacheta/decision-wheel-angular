@@ -1,7 +1,7 @@
 export interface WheelOption {
   id: number;
   title: string;
-  color?: string;
+  backgroundColor?: string;
   textColor?: string;
   optionsSize?: number;
 }

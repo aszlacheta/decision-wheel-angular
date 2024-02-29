@@ -8,10 +8,11 @@
   height: @wheel-radius*1px;
   border-radius: 250px;
   justify-content: center;
+  z-index: 1;
 
   background-color: @red;
   background: linear-gradient(180deg, #d00302, #880500);
-  box-shadow: 0px -1px 2px 2px #ffba94, 0px 10px 20px 2px #2f2b2b;
+  box-shadow: 0px -1px 2px 2px #ffba94, 0px 10px 20px 2px #2f2b2b, 0px 0px 250px #984fc1;
 
   .rotate {
     display: flex;
@@ -126,34 +127,66 @@
       background: @veryDarkGold;
     }
   }
+}
 
-  .footer-container {
-    position: absolute;
-    bottom: -80px;
-    z-index: -1;
+.footer-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10px;
+  z-index: 0;
 
-    .footer {
-      width: 300px;
-      height: 100px;
-      clip-path: polygon(25% 0, 20% 45%, 15% 60%, 6% 80%, 0 100%, 100% 100%, 94% 80%, 85% 60%, 80% 45%, 75% 0);
+  .footer {
+    width: 300px;
+    height: 100px;
+    clip-path: polygon(25% 0, 20% 45%, 15% 60%, 6% 80%, 0 100%, 100% 100%, 94% 80%, 85% 60%, 80% 45%, 75% 0);
 
-      background: @red;
-      background: linear-gradient(180deg, #360400, #590200, #6b0100, #630301, #5a0300);
-    }
+    background: @red;
+    background: linear-gradient(180deg, #360400, #590200, #6b0100, #630301, #5a0300);
+  }
 
+  .bottom {
+    position: relative;
+    height: 10px;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-shadow: 0 2px 15px #171717;
+
+    background: @red;
+    background: linear-gradient(180deg, #d23b3b, #8c0e09);
+
+    // reflection
     &:after {
       content: '';
       position: absolute;
-      bottom: 0;
-      height: 15px;
-      width: 110%;
-      left: -5%;
+      bottom: -38px;
+
+      height: 20px;
+      width: 100%;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
-      box-shadow: 0 2px 10px #343434;
-
       background: @red;
-      background: linear-gradient(180deg, #e96767, #c2201a);
+      background: linear-gradient(180deg, #d23b3b, #8c0e09);
+      transform: rotatex(180deg) translatey(15px);
+      mask-image: linear-gradient(transparent 0%, white 80%);
+      opacity: 0.3;
     }
+  }
+
+  // shadow
+  &:before {
+    content: '';
+    position: absolute;
+    width: 110%;
+    height: 60px;
+    bottom: -10px;
+    left: -5%;
+    border-radius: 100px;
+
+    background-color: rgba(0, 0, 0, 0.3);
+    filter: blur(15px);
   }
 }

@@ -33,7 +33,7 @@ export class WheelComponent {
     { id: 14, title: 'fourteenth' },
   ].map((option, index) => ({
     ...option,
-    color: DEFAULT_COLORS[index % DEFAULT_COLORS.length],
+    backgroundColor: DEFAULT_COLORS[index % DEFAULT_COLORS.length],
     textColor: DEFAULT_TEXT_COLORS[index % DEFAULT_TEXT_COLORS.length],
   }));
 }
