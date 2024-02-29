@@ -6,9 +6,10 @@
            class="circle"></div>
     </div>
     <div class="options-container">
-      <app-wheel-option *ngFor="let option of options; index as i" [backgroundColor]="option.backgroundColor"
-                        [id]="option.id"
-                        [optionsSize]="options.length" [textColor]="option.textColor" [title]="option.title"
+      <app-wheel-option *ngFor="let option of (options | async); index as i"
+                        [index]="i"
+                        [optionsSize]="(options | async)?.length ?? 0"
+                        [title]="option.title"
                         class="option"></app-wheel-option>
     </div>
   </div>
