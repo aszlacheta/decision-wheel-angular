@@ -1,8 +1,8 @@
 # Decision Wheel Angular
 
-TBD
+:warning:  Project under the development :warning:
 
-## Demo
+## Demo :rainbow:
 
 See it [here](https://aszlacheta.github.io/decision-wheel-angular)!
 
@@ -12,6 +12,8 @@ See it [here](https://aszlacheta.github.io/decision-wheel-angular)!
 
 - [ ] CI/CD (test, linters, RN)
 - [ ] translations
+- [ ] store data in LocaleStorage
+- [ ] add sounds
 - [ ] editable options in wheel (with deletion, rename, duplication, drag&drop)
 - [ ] shuffle options
 - [ ] mute sounds
