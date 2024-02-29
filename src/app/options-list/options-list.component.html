@@ -1,0 +1,21 @@
+<div class="options-list-container">
+  <div class="options-list-roll"></div>
+  <div class="options-list-content">
+    <div class="options-list-header">
+      <span>4 </span>
+      <span>OPTIONS</span>
+    </div>
+    <div>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Add new option</mat-label>
+          <input [(ngModel)]="newOptionTitle" matInput name="newOptionTitle" placeholder="Sample new option title">
+        </mat-form-field>
+        <button (click)="addOption()" [disabled]="isAddDisabled" mat-raised-button>Add</button>
+      </form>
+      <div class="options-list-items">
+        <app-option *ngFor="let option of options | async; index as i" [index]="i" [title]="option.title"></app-option>
+      </div>
+    </div>
+  </div>
+</div>
