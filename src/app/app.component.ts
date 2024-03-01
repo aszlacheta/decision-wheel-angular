@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { WheelComponent } from './wheel/wheel.component';
-import { OptionsListComponent } from './options-list/options-list.component';
+import { CardOptionsListComponent } from './card-options-list/card-options-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, WheelComponent, OptionsListComponent],
+  imports: [RouterOutlet, WheelComponent, CardOptionsListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less',
 })

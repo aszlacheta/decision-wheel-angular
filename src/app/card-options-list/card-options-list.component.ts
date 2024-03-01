@@ -13,7 +13,7 @@ import { MatDivider } from '@angular/material/divider';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInput, MatLabel } from '@angular/material/input';
-import { OptionComponent } from '../option/option.component';
+import { CardOptionComponent } from '../card-option/card-option.component';
 import { Observable } from 'rxjs';
 import { WheelOption } from '../wheel-option/wheel-option';
 import { OptionsService } from '../options.service';
@@ -23,7 +23,7 @@ import { FormsModule } from '@angular/forms';
 const MAX_OPTIONS_NUMBER = 10;
 
 @Component({
-  selector: 'app-options-list',
+  selector: 'app-card-options-list',
   standalone: true,
   imports: [
     MatCard,
@@ -39,15 +39,15 @@ const MAX_OPTIONS_NUMBER = 10;
     MatFormField,
     MatInput,
     MatLabel,
-    OptionComponent,
+    CardOptionComponent,
     NgForOf,
     CommonModule,
     FormsModule,
   ],
-  templateUrl: './options-list.component.html',
-  styleUrl: './options-list.component.less',
+  templateUrl: './card-options-list.component.html',
+  styleUrl: './card-options-list.component.less',
 })
-export class OptionsListComponent implements OnInit {
+export class CardOptionsListComponent implements OnInit {
   options: Observable<WheelOption[]>;
   newOptionTitle: string = 'test';
   isAddDisabled: boolean = false;

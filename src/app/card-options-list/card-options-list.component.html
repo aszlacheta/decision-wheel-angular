@@ -14,7 +14,8 @@
         <button (click)="addOption()" [disabled]="isAddDisabled" mat-raised-button>Add</button>
       </form>
       <div class="options-list-items">
-        <app-option *ngFor="let option of options | async; index as i" [index]="i" [title]="option.title"></app-option>
+        <app-card-option *ngFor="let option of options | async; index as i" [index]="i"
+                         [title]="option.title"></app-card-option>
       </div>
     </div>
   </div>

@@ -6,13 +6,13 @@ import { MatMiniFabButton } from '@angular/material/button';
 const MIN_OPTIONS_NUMBER = 2;
 
 @Component({
-  selector: 'app-option',
+  selector: 'app-card-option',
   standalone: true,
   imports: [MatIcon, MatMiniFabButton],
-  templateUrl: './option.component.html',
-  styleUrl: './option.component.less',
+  templateUrl: './card-option.component.html',
+  styleUrl: './card-option.component.less',
 })
-export class OptionComponent implements OnInit {
+export class CardOptionComponent implements OnInit {
   @Input() index: number;
   @Input() title: string;
 
