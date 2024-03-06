@@ -1,0 +1,9 @@
+<form [formGroup]="form">
+  <mat-form-field class="options">
+    <textarea cdkTextareaAutosize formControlName="options"
+              matInput placeholder="Enter options"></textarea>
+    <mat-error *ngIf="(form.controls.options.hasError('min'))">Minimum options number is 2</mat-error>
+    <mat-error *ngIf="(form.controls.options.hasError('max'))">Maximum options number is 10</mat-error>
+
+  </mat-form-field>
+</form>

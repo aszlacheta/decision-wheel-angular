@@ -1,7 +1,16 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  margin-left: 5%;
+}
+
 .options-list-container {
   display: flex;
   flex-direction: column;
-  align-self: flex-end;
   min-width: 300px;
   width: 100%;
   height: 80%;
@@ -10,7 +19,7 @@
   .options-list-roll {
     z-index: 10;
     width: 102%;
-    height: 70px;
+    height: 60px;
     margin-left: -1%;
     border-radius: 10px;
 
@@ -33,42 +42,73 @@
     background: rgb(234, 235, 239);
     background: linear-gradient(90deg, rgba(234, 235, 239, 1) 0%, rgba(206, 209, 214, 1) 100%);
 
-    &:before {
+    &:before, &:after {
       content: '';
       position: absolute;
-      top: -70px;
-      left: -90px;
       width: 100%;
       height: 100%;
+      top: -70px;
 
       opacity: 0.7;
-      background: url('../../assets/img.png') no-repeat;
-      transform: rotate(-40deg);
+    }
+
+    &:before {
+      left: -100px;
+      background: url('../../assets/img.png') top left no-repeat;
+      transform: rotate(20deg);
     }
 
     &:after {
-      content: '';
-      position: absolute;
-      top: -100px;
-      right: -180px;
-      width: 100%;
-      height: 100%;
-
-      opacity: 0.7;
-      background: url('../../assets/img.png') no-repeat;
-      transform: scaleX(-1) rotate(30deg);
+      right: -90px;
+      background: url('../../assets/img.png') top left no-repeat;
+      transform: scaleX(-1) rotate(15deg);
     }
 
-    .options-list-header {;
-      font-family: "Annie Use Your Telescope", cursive;
-      font-size: 25px;
+    .options-list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+
+      //font-family: "Annie Use Your Telescope", cursive;
+      font-size: 14px;
+
+      .options-list-header-options-summary {
+        display: flex;
+        align-items: center;
+
+        .number {
+          font-size: 50px;
+          line-height: 50px;
+          margin-right: 10px;
+        }
+
+        .title {
+          > span {
+            display: block;
+            line-height: 15px;
+            letter-spacing: 4px;
+
+            &:first-child {
+              font-weight: bold;
+              letter-spacing: 0;
+            }
+          }
+        }
+      }
+
+      mat-checkbox {
+        z-index: 1;
+      }
+
     }
 
     form, .options-list-items {
       position: relative;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
       z-index: 100;
     }
-
-
   }
 }
