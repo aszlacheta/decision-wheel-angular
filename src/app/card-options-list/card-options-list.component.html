@@ -1,0 +1,22 @@
+<div class="options-list-container">
+  <div class="options-list-roll"></div>
+  <div class="options-list-content">
+    <div class="options-list-header">
+      <div class="options-list-header-options-summary">
+        <span class="number">{{(options | async)?.length ?? '-'}}</span>
+        <span class="title">
+          <span>OPTIONS</span>
+          <span>ADDED</span>
+        </span>
+      </div>
+      <mat-checkbox [(ngModel)]="isAdvancedOn" [disabled]="isAdvancedDisabled">Advanced mode</mat-checkbox>
+    </div>
+    <div *ngIf="isAdvancedOn" class="options-list-items">
+      <app-card-option-advanced *ngFor="let option of options | async; index as i" [index]="i"
+                                [title]="option.title"></app-card-option-advanced>
+    </div>
+    <div *ngIf="!isAdvancedOn" class="options-list-items">
+      <app-card-textarea></app-card-textarea>
+    </div>
+  </div>
+</div>

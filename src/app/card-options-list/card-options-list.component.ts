@@ -13,17 +13,17 @@ import { MatDivider } from '@angular/material/divider';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInput, MatLabel } from '@angular/material/input';
-import { OptionComponent } from '../option/option.component';
+import { CardTextareaComponent } from '../card-textarea/card-textarea.component';
 import { Observable } from 'rxjs';
 import { WheelOption } from '../wheel-option/wheel-option';
-import { OptionsService } from '../options.service';
+import { MAX_OPTIONS_NUMBER, OptionsService } from '../options.service';
 import { CommonModule, NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-const MAX_OPTIONS_NUMBER = 10;
+import { MatCheckbox } from '@angular/material/checkbox';
+import { CardOptionAdvancedComponent } from '../card-option-advanced/card-option-advanced.component';
 
 @Component({
-  selector: 'app-options-list',
+  selector: 'app-card-options-list',
   standalone: true,
   imports: [
     MatCard,
@@ -39,18 +39,22 @@ const MAX_OPTIONS_NUMBER = 10;
     MatFormField,
     MatInput,
     MatLabel,
-    OptionComponent,
+    CardTextareaComponent,
     NgForOf,
     CommonModule,
     FormsModule,
+    MatCheckbox,
+    CardOptionAdvancedComponent,
   ],
-  templateUrl: './options-list.component.html',
-  styleUrl: './options-list.component.less',
+  templateUrl: './card-options-list.component.html',
+  styleUrl: './card-options-list.component.less',
 })
-export class OptionsListComponent implements OnInit {
+export class CardOptionsListComponent implements OnInit {
   options: Observable<WheelOption[]>;
   newOptionTitle: string = 'test';
   isAddDisabled: boolean = false;
+  isAdvancedOn: boolean = false;
+  isAdvancedDisabled: boolean = false;
 
   constructor(private optionsService: OptionsService) {}
 
@@ -59,6 +63,10 @@ export class OptionsListComponent implements OnInit {
 
     this.options.subscribe(options => {
       this.isAddDisabled = options.length >= MAX_OPTIONS_NUMBER;
+    });
+
+    this.optionsService.isSpinning.subscribe(isSpinning => {
+      this.isAdvancedDisabled = isSpinning;
     });
   }
 

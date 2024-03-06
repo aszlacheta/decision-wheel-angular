@@ -17,4 +17,5 @@ See it [here](https://aszlacheta.github.io/decision-wheel-angular)!
 - [ ] editable options in wheel (with deletion, rename, duplication, drag&drop)
 - [ ] shuffle options
 - [ ] mute sounds
+- [ ] RWD
 - [ ] predefined wheels (yes/no, dates, restaurants, types of food)

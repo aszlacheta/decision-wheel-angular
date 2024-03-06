@@ -28,7 +28,11 @@ export class WheelOptionComponent {
   }
 
   get skewValue(): number {
-    return 90 - this.angle;
+    return 90 - this.angle > 0 ? (90 - this.angle) * -1 : this.angle - 90;
+  }
+
+  get titleSkewValue(): number {
+    return this.skewValue * -1;
   }
 
   get defaultBackgroundColor(): string {

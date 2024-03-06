@@ -1,18 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { OptionsService } from '../options.service';
 import { MatIcon } from '@angular/material/icon';
 import { MatMiniFabButton } from '@angular/material/button';
-
-const MIN_OPTIONS_NUMBER = 2;
+import { MIN_OPTIONS_NUMBER, OptionsService } from '../options.service';
 
 @Component({
-  selector: 'app-option',
+  selector: 'app-card-option-advanced',
   standalone: true,
   imports: [MatIcon, MatMiniFabButton],
-  templateUrl: './option.component.html',
-  styleUrl: './option.component.less',
+  templateUrl: './card-option-advanced.component.html',
+  styleUrl: './card-option-advanced.component.less',
 })
-export class OptionComponent implements OnInit {
+export class CardOptionAdvancedComponent implements OnInit {
   @Input() index: number;
   @Input() title: string;
 

@@ -7,6 +7,7 @@ import { OptionsService } from '../options.service';
 
 const ROTATION_DEGREES_MIN: number = 1500;
 const ROTATION_DEGREES_MAX: number = 2500;
+const SPIN_TIMEOUT_MS = 5000;
 
 @Component({
   selector: 'app-wheel',
@@ -18,6 +19,7 @@ const ROTATION_DEGREES_MAX: number = 2500;
 export class WheelComponent implements OnInit {
   circles: undefined[] = Array.from(Array(20));
   options: Observable<WheelOption[]>;
+  isDisabled: boolean;
 
   rotationDegrees: number = 0;
 
@@ -31,9 +33,19 @@ export class WheelComponent implements OnInit {
 
   ngOnInit() {
     this.options = this.optionsService.getOptions();
+    this.optionsService.isDisabled.subscribe(isDisabled => {
+      this.isDisabled = isDisabled;
+    });
   }
 
   onSpin(): void {
-    this.rotationDegrees += this.rotationRandomDegrees;
+    if (!this.isDisabled) {
+      this.rotationDegrees += this.rotationRandomDegrees;
+      this.optionsService.startSpin();
+
+      setTimeout(() => {
+        this.optionsService.endSpin();
+      }, SPIN_TIMEOUT_MS);
+    }
   }
 }
