@@ -35,11 +35,11 @@ jobs:
       - name: Install
         run: npm ci
       - name: Build
-        run: npm run build -- -c production --base-href "https://aszlacheta.github.io/decision-wheel-angular/"
+        run: npm run build -- -c production --base-href "https://aszlacheta.github.io/decision-wheel-angular/en-US"
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist/decision-wheel-angular/browser'
+          path: './dist/decision-wheel-angular/browser/en-US'
   deploy:
     needs: build
     permissions:

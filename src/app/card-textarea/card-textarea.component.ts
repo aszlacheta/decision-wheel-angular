@@ -67,6 +67,8 @@ export class CardTextareaComponent implements OnInit {
       }
     ),
   });
+  protected readonly MIN_OPTIONS_NUMBER = MIN_OPTIONS_NUMBER;
+  protected readonly MAX_OPTIONS_NUMBER = MAX_OPTIONS_NUMBER;
 
   constructor(private optionsService: OptionsService) {}
 
