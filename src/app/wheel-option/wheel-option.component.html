@@ -1,4 +1,5 @@
-<div [style.background-color]="backgroundColor ?? defaultBackgroundColor"
+<div [attr.data-option]=index
+     [style.background-color]="backgroundColor ?? defaultBackgroundColor"
      [style.transform]="optionsSize > 2 && 'rotate(' + (rotateValue) + 'deg) skewY(' + (skewValue) +'deg)'"
      class="option">
   <div

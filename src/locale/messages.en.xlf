@@ -56,6 +56,24 @@
         <note priority="1" from="description">Label for error when maximum items condition is not fulfilled</note>
         <note priority="1" from="meaning">card-error-max-options</note>
       </trans-unit>
+      <trans-unit id="7609698471840777359" datatype="html">
+        <source> And the Oscar goes to...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/winner-option-notification/winner-option-notification.component.html</context>
+          <context context-type="linenumber">2,5</context>
+        </context-group>
+        <note priority="1" from="description">Notification header label, shown when option was chosen</note>
+        <note priority="1" from="meaning">winner-option-notification-header</note>
+      </trans-unit>
+      <trans-unit id="1856762088061848171" datatype="html">
+        <source>Close </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/winner-option-notification/winner-option-notification.component.html</context>
+          <context context-type="linenumber">10,12</context>
+        </context-group>
+        <note priority="1" from="description">Close winner notification</note>
+        <note priority="1" from="meaning">winner-option-notification-header-close-button</note>
+      </trans-unit>
     </body>
   </file>
 </xliff>
