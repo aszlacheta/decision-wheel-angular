@@ -4,7 +4,7 @@
 
 ## Demo :rainbow:
 
-See it [here](https://aszlacheta.github.io/decision-wheel-angular)!
+See it [here](https://aszlacheta.github.io/decision-wheel-angular/en-US/)!
 
 ## Builds
 
