@@ -10,10 +10,11 @@ See it [here](https://aszlacheta.github.io/decision-wheel-angular)!
 
 ## TODO
 
+- [x] translations
 - [ ] CI/CD (test, linters, RN)
-- [ ] translations
 - [ ] store data in LocaleStorage
 - [ ] add sounds
+- [ ] add won decision modal
 - [ ] editable options in wheel (with deletion, rename, duplication, drag&drop)
 - [ ] shuffle options
 - [ ] mute sounds

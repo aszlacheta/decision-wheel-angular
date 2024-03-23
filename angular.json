@@ -10,6 +10,14 @@
           "style": "less"
         }
       },
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "pl-PL": {
+            "translation": "src/locale/messages.pl.xlf"
+          }
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -34,7 +42,9 @@
               "src/styles.less",
               "src/variables.less"
             ],
-            "scripts": []
+            "scripts": [],
+            "localize": true,
+            "i18nMissingTranslation": "error"
           },
           "configurations": {
             "production": {

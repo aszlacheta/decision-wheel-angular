@@ -5,11 +5,13 @@
       <div class="options-list-header-options-summary">
         <span class="number">{{(options | async)?.length ?? '-'}}</span>
         <span class="title">
-          <span>OPTIONS</span>
-          <span>ADDED</span>
+          <span i18n="card-options|Options span label">options</span>
+          <span i18n="card-option-added|Options span added label">added</span>
         </span>
       </div>
-      <mat-checkbox [(ngModel)]="isAdvancedOn" [disabled]="isAdvancedDisabled">Advanced mode</mat-checkbox>
+      <mat-checkbox [(ngModel)]="isAdvancedOn" [disabled]="isAdvancedDisabled"
+                    i18n="advanced-mode|Advanced checkbox label">Advanced mode
+      </mat-checkbox>
     </div>
     <div *ngIf="isAdvancedOn" class="options-list-items">
       <app-card-option-advanced *ngFor="let option of options | async; index as i" [index]="i"

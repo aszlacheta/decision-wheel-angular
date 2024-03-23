@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="4329818902558675594" datatype="html">
+        <source>options</source>
+        <target>dodane</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/card-options-list/card-options-list.component.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+        <note priority="1" from="description">Options span label</note>
+        <note priority="1" from="meaning">card-options</note>
+      </trans-unit>
+      <trans-unit id="4097253900819973817" datatype="html">
+        <source>added</source>
+        <target>opcje</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/card-options-list/card-options-list.component.html</context>
+          <context context-type="linenumber">9,12</context>
+        </context-group>
+        <note priority="1" from="description">Options span added label</note>
+        <note priority="1" from="meaning">card-option-added</note>
+      </trans-unit>
+      <trans-unit id="1368524072997813490" datatype="html">
+        <source>Advanced mode </source>
+        <target>Tryb zaawansowany</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/card-options-list/card-options-list.component.html</context>
+          <context context-type="linenumber">13,16</context>
+        </context-group>
+        <note priority="1" from="description">Advanced checkbox label</note>
+        <note priority="1" from="meaning">advanced-mode</note>
+      </trans-unit>
+      <trans-unit id="5603794040110019850" datatype="html">
+        <source>Enter options</source>
+        <target>Dodaj opcje...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/card-textarea/card-textarea.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+        <note priority="1" from="description">Placeholder for options textarea</note>
+        <note priority="1" from="meaning">card-textarea-placeholder</note>
+      </trans-unit>
+      <trans-unit id="1822348164229998210" datatype="html">
+        <source>Minimum options number is <x id="INTERPOLATION" equiv-text="{{MIN_OPTIONS_NUMBER}}"/></source>
+        <target>Minimalna ilość opcji to <x id="INTERPOLATION" equiv-text="{{MIN_OPTIONS_NUMBER}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/card-textarea/card-textarea.component.html</context>
+          <context context-type="linenumber">8,10</context>
+        </context-group>
+        <note priority="1" from="description">Label for error when minimum items condition is not fulfilled</note>
+        <note priority="1" from="meaning">card-error-min-options</note>
+      </trans-unit>
+      <trans-unit id="5964914617308183576" datatype="html">
+        <source>Maximum options number is <x id="INTERPOLATION" equiv-text="{{MAX_OPTIONS_NUMBER}}"/></source>
+        <target>Maksymalna ilość opcji to <x id="INTERPOLATION" equiv-text="{{MAX_OPTIONS_NUMBER}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/card-textarea/card-textarea.component.html</context>
+          <context context-type="linenumber">12,15</context>
+        </context-group>
+        <note priority="1" from="description">Label for error when maximum items condition is not fulfilled</note>
+        <note priority="1" from="meaning">card-error-max-options</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
