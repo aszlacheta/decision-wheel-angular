@@ -6,6 +6,10 @@
 
 See it [here](https://aszlacheta.github.io/decision-wheel-angular)!
 
+## Builds
+
+![example workflow](https://github.com/aszlacheta/decision-wheel-angular/actions/workflows/static.yml/badge.svg?branch=main)
+
 ## Release Notes
 
 ## TODO
