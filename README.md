@@ -16,9 +16,9 @@ See it [here](https://aszlacheta.github.io/decision-wheel-angular/en-US/)!
 
 - [x] translations
 - [x] add won decision modal
+- [x] add sounds
 - [ ] CI/CD (test, linters, RN)
 - [ ] store data in LocaleStorage
-- [ ] add sounds
 - [ ] editable options in wheel (with deletion, rename, duplication, drag&drop)
 - [ ] shuffle options
 - [ ] mute sounds

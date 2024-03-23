@@ -5,10 +5,11 @@ import { Observable, take } from 'rxjs';
 import { WheelOption } from '../wheel-option/wheel-option';
 import { OptionsService } from '../options.service';
 import { WinnerOptionNotificationService } from '../winner-option-notification.service';
+import { TickSoundService } from '../tick-sound.service';
 
 const ROTATION_DEGREES_MIN: number = 1500;
 const ROTATION_DEGREES_MAX: number = 2500;
-const SPIN_TIMEOUT_MS = 5000;
+export const SPIN_TIMEOUT_MS = 4000;
 
 @Component({
   selector: 'app-wheel',
@@ -28,7 +29,8 @@ export class WheelComponent implements OnInit {
 
   constructor(
     private optionsService: OptionsService,
-    private winnerOptionsNotificationService: WinnerOptionNotificationService
+    private winnerOptionsNotificationService: WinnerOptionNotificationService,
+    private tickSoundService: TickSoundService
   ) {}
 
   get rotationRandomDegrees() {
@@ -56,6 +58,7 @@ export class WheelComponent implements OnInit {
   onSpin(): void {
     if (!this.isDisabled) {
       this.rotationDegrees += this.rotationRandomDegrees;
+      this.tickSoundService.start();
       this.optionsService.startSpin();
 
       setTimeout(() => {
