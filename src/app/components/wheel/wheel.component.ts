@@ -25,6 +25,7 @@ export class WheelComponent implements OnInit, OnDestroy {
   circles: undefined[] = Array.from(Array(20));
   options: Observable<WheelOption[]>;
   isDisabled: boolean;
+  isSpinning: boolean;
 
   rotationDegrees: number = 0;
 
@@ -67,13 +68,15 @@ export class WheelComponent implements OnInit, OnDestroy {
   }
 
   onSpin(): void {
-    if (!this.isDisabled) {
+    if (!this.isDisabled && !this.isSpinning) {
+      this.isSpinning = true;
       this.rotationDegrees += this.rotationRandomDegrees;
       this.tickSoundService.start();
       this.optionsService.startSpin();
 
       setTimeout(() => {
         this.optionsService.endSpin();
+        this.isSpinning = false;
 
         this.winnerOptionsNotificationService.updateWinnerOptionIndex();
         if (this.winnerOption) {
