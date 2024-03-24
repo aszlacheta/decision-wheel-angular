@@ -6,7 +6,7 @@
         <source>Add new wheel option</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/advanced-view/card-option-advanced-add/card-option-advanced-add.component.html</context>
-          <context context-type="linenumber">1,2</context>
+          <context context-type="linenumber">2,3</context>
         </context-group>
         <note priority="1" from="description">add-new-wheel-option-aria-label</note>
       </trans-unit>
@@ -14,7 +14,7 @@
         <source>Add new option</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/advanced-view/card-option-advanced-add/card-option-advanced-add.component.html</context>
-          <context context-type="linenumber">6,9</context>
+          <context context-type="linenumber">7,10</context>
         </context-group>
         <note priority="1" from="description">add-new-wheel-option-tooltip</note>
       </trans-unit>
@@ -46,15 +46,23 @@
         <source>Move around wheel option</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/advanced-view/card-option-advanced/card-option-advanced.component.html</context>
-          <context context-type="linenumber">3,4</context>
+          <context context-type="linenumber">5,6</context>
         </context-group>
         <note priority="1" from="description">dd-wheel-option-aria-label</note>
+      </trans-unit>
+      <trans-unit id="2982657439210659668" datatype="html">
+        <source>Change color</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/advanced-view/card-option-advanced/card-option-advanced.component.html</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+        <note priority="1" from="description">color-picker-tootlip</note>
       </trans-unit>
       <trans-unit id="7277751396068918432" datatype="html">
         <source>Edit wheel option</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/advanced-view/card-option-advanced/card-option-advanced.component.html</context>
-          <context context-type="linenumber">18,20</context>
+          <context context-type="linenumber">30,32</context>
         </context-group>
         <note priority="1" from="description">edit-wheel-option-aria-label</note>
       </trans-unit>
@@ -62,7 +70,7 @@
         <source>Rename</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/advanced-view/card-option-advanced/card-option-advanced.component.html</context>
-          <context context-type="linenumber">24,25</context>
+          <context context-type="linenumber">36,37</context>
         </context-group>
         <note priority="1" from="description">edit-wheel-option-aria-tooltip</note>
       </trans-unit>
@@ -70,7 +78,7 @@
         <source>Duplicate option</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/advanced-view/card-option-advanced/card-option-advanced.component.html</context>
-          <context context-type="linenumber">28,30</context>
+          <context context-type="linenumber">40,42</context>
         </context-group>
         <note priority="1" from="description">duplicate-wheel-option-aria-label</note>
       </trans-unit>
@@ -78,7 +86,7 @@
         <source>Duplicate</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/advanced-view/card-option-advanced/card-option-advanced.component.html</context>
-          <context context-type="linenumber">33,35</context>
+          <context context-type="linenumber">45,47</context>
         </context-group>
         <note priority="1" from="description">duplicate-wheel-option-aria-tooltip</note>
       </trans-unit>
@@ -86,7 +94,7 @@
         <source>Delete wheel option</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/advanced-view/card-option-advanced/card-option-advanced.component.html</context>
-          <context context-type="linenumber">37,39</context>
+          <context context-type="linenumber">50,52</context>
         </context-group>
         <note priority="1" from="description">delete-wheel-option-aria-label</note>
       </trans-unit>
@@ -94,7 +102,7 @@
         <source>Remove</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/advanced-view/card-option-advanced/card-option-advanced.component.html</context>
-          <context context-type="linenumber">43,44</context>
+          <context context-type="linenumber">56,57</context>
         </context-group>
         <note priority="1" from="description">delete-wheel-option-aria-tooltip</note>
       </trans-unit>
@@ -116,11 +124,29 @@
         <note priority="1" from="description">Options span added label</note>
         <note priority="1" from="meaning">card-option-added</note>
       </trans-unit>
+      <trans-unit id="5963114224801418185" datatype="html">
+        <source>Shuffle options</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/card-options-list/card-options-list.component.html</context>
+          <context context-type="linenumber">13,15</context>
+        </context-group>
+        <note priority="1" from="description">Label for toggle button that shuffle options</note>
+        <note priority="1" from="meaning">shuffle-options-button</note>
+      </trans-unit>
+      <trans-unit id="6185852766259411057" datatype="html">
+        <source>Shuffle</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/card-options-list/card-options-list.component.html</context>
+          <context context-type="linenumber">17,20</context>
+        </context-group>
+        <note priority="1" from="description">Tooltip for toggle button that shuffle options</note>
+        <note priority="1" from="meaning">shuffle-options-tooltip</note>
+      </trans-unit>
       <trans-unit id="1368524072997813490" datatype="html">
         <source>Advanced mode </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/card-options-list/card-options-list.component.html</context>
-          <context context-type="linenumber">13,16</context>
+          <context context-type="linenumber">24,27</context>
         </context-group>
         <note priority="1" from="description">Advanced checkbox label</note>
         <note priority="1" from="meaning">advanced-mode</note>
@@ -182,7 +208,7 @@
         <source>New</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/options.service.ts</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">12</context>
         </context-group>
         <note priority="1" from="description">new-option-title</note>
       </trans-unit>
@@ -190,7 +216,7 @@
         <source>pizza</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/options.service.ts</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">16</context>
         </context-group>
         <note priority="1" from="description">first-default-option-label</note>
       </trans-unit>
@@ -198,7 +224,7 @@
         <source>pasta</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/options.service.ts</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">21</context>
         </context-group>
         <note priority="1" from="description">second-default-option-label</note>
       </trans-unit>
@@ -206,7 +232,7 @@
         <source>ramen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/options.service.ts</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">26</context>
         </context-group>
         <note priority="1" from="description">third-default-option-label</note>
       </trans-unit>
@@ -214,7 +240,7 @@
         <source>sushi</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/options.service.ts</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">31</context>
         </context-group>
         <note priority="1" from="description">fourth-default-option-label</note>
       </trans-unit>
