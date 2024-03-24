@@ -5,8 +5,8 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class WheelSoundsService {
-  tickSound = new Audio('../../assets/tick.mp3');
-  tadaSound = new Audio('../../assets/tada.mp3');
+  tickSound = new Audio('./assets/tick.mp3');
+  tadaSound = new Audio('./assets/tada.mp3');
   playbackRate = 0.55;
   isMuted: Subject<boolean> = new BehaviorSubject(false);
 
