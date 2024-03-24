@@ -6,7 +6,7 @@
         <source>options</source>
         <target>dodane</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/card-options-list/card-options-list.component.html</context>
+          <context context-type="sourcefile">src/app/components/card-options-list/card-options-list.component.html</context>
           <context context-type="linenumber">8,9</context>
         </context-group>
         <note priority="1" from="description">Options span label</note>
@@ -16,7 +16,7 @@
         <source>added</source>
         <target>opcje</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/card-options-list/card-options-list.component.html</context>
+          <context context-type="sourcefile">src/app/components/card-options-list/card-options-list.component.html</context>
           <context context-type="linenumber">9,12</context>
         </context-group>
         <note priority="1" from="description">Options span added label</note>
@@ -26,7 +26,7 @@
         <source>Advanced mode </source>
         <target>Tryb zaawansowany</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/card-options-list/card-options-list.component.html</context>
+          <context context-type="sourcefile">src/app/components/card-options-list/card-options-list.component.html</context>
           <context context-type="linenumber">13,16</context>
         </context-group>
         <note priority="1" from="description">Advanced checkbox label</note>
@@ -36,7 +36,7 @@
         <source>Enter options</source>
         <target>Dodaj opcje...</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/card-textarea/card-textarea.component.html</context>
+          <context context-type="sourcefile">src/app/components/card-textarea/card-textarea.component.html</context>
           <context context-type="linenumber">5,6</context>
         </context-group>
         <note priority="1" from="description">Placeholder for options textarea</note>
@@ -46,7 +46,7 @@
         <source>Minimum options number is <x id="INTERPOLATION" equiv-text="{{MIN_OPTIONS_NUMBER}}"/></source>
         <target>Minimalna ilość opcji to <x id="INTERPOLATION" equiv-text="{{MIN_OPTIONS_NUMBER}}"/></target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/card-textarea/card-textarea.component.html</context>
+          <context context-type="sourcefile">src/app/components/card-textarea/card-textarea.component.html</context>
           <context context-type="linenumber">8,10</context>
         </context-group>
         <note priority="1" from="description">Label for error when minimum items condition is not fulfilled</note>
@@ -56,11 +56,40 @@
         <source>Maximum options number is <x id="INTERPOLATION" equiv-text="{{MAX_OPTIONS_NUMBER}}"/></source>
         <target>Maksymalna ilość opcji to <x id="INTERPOLATION" equiv-text="{{MAX_OPTIONS_NUMBER}}"/></target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/card-textarea/card-textarea.component.html</context>
+          <context context-type="sourcefile">src/app/components/card-textarea/card-textarea.component.html</context>
           <context context-type="linenumber">12,15</context>
         </context-group>
         <note priority="1" from="description">Label for error when maximum items condition is not fulfilled</note>
         <note priority="1" from="meaning">card-error-max-options</note>
+      </trans-unit>
+      <trans-unit id="187187500641108332" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{isMuted ? &apos;Enable sounds&apos; : &apos;Mute&apos;}}"/></source>
+        <target><x id="INTERPOLATION" equiv-text="{{isMuted ? &apos;Włącz dźwięki&apos; : &apos;Wycisz&apos;}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/mute-toggle/mute-toggle.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+        <note priority="1" from="description">{{isMuted ? &apos;mute-toggle-button-enable-sounds&apos; : &apos;mute-toggle-button-mute&apos;}}</note>
+      </trans-unit>
+      <trans-unit id="7609698471840777359" datatype="html">
+        <source> And the Oscar goes to...</source>
+        <target>Zwyciężył...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/winner-option-notification/winner-option-notification.component.html</context>
+          <context context-type="linenumber">2,5</context>
+        </context-group>
+        <note priority="1" from="description">Notification header label, shown when option was chosen</note>
+        <note priority="1" from="meaning">winner-option-notification-header</note>
+      </trans-unit>
+      <trans-unit id="1856762088061848171" datatype="html">
+        <source>Close </source>
+        <target>Zamknij</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/winner-option-notification/winner-option-notification.component.html</context>
+          <context context-type="linenumber">10,12</context>
+        </context-group>
+        <note priority="1" from="description">Close winner notification</note>
+        <note priority="1" from="meaning">winner-option-notification-header-close-button</note>
       </trans-unit>
     </body>
   </file>

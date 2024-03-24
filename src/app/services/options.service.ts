@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { WheelOption } from './wheel-option/wheel-option';
+import { WheelOption } from '../components/wheel-option/wheel-option';
 import { BehaviorSubject, Observable, Subject, take } from 'rxjs';
 
 export const MIN_OPTIONS_NUMBER = 2;

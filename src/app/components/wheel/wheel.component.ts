@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgForOf } from '@angular/common';
 import { WheelOptionComponent } from '../wheel-option/wheel-option.component';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { WheelOption } from '../wheel-option/wheel-option';
-import { OptionsService } from '../options.service';
+import { OptionsService } from '../../services/options.service';
+import { WinnerOptionNotificationService } from '../../services/winner-option-notification.service';
+import { WheelSoundsService } from '../../services/wheel-sounds.service';
 
 const ROTATION_DEGREES_MIN: number = 1500;
 const ROTATION_DEGREES_MAX: number = 2500;
-const SPIN_TIMEOUT_MS = 5000;
+export const SPIN_TIMEOUT_MS = 4000;
 
 @Component({
   selector: 'app-wheel',
@@ -23,7 +25,13 @@ export class WheelComponent implements OnInit {
 
   rotationDegrees: number = 0;
 
-  constructor(private optionsService: OptionsService) {}
+  winnerOption: WheelOption | undefined;
+
+  constructor(
+    private optionsService: OptionsService,
+    private winnerOptionsNotificationService: WinnerOptionNotificationService,
+    private tickSoundService: WheelSoundsService
+  ) {}
 
   get rotationRandomDegrees() {
     const min = Math.ceil(ROTATION_DEGREES_MIN);
@@ -36,15 +44,30 @@ export class WheelComponent implements OnInit {
     this.optionsService.isDisabled.subscribe(isDisabled => {
       this.isDisabled = isDisabled;
     });
+    this.winnerOptionsNotificationService.winnerOptionIndex.subscribe(
+      winnerOptionIndex => {
+        this.options.pipe(take(1)).subscribe(options => {
+          if (options[winnerOptionIndex]) {
+            this.winnerOption = options[winnerOptionIndex];
+          }
+        });
+      }
+    );
   }
 
   onSpin(): void {
     if (!this.isDisabled) {
       this.rotationDegrees += this.rotationRandomDegrees;
+      this.tickSoundService.start();
       this.optionsService.startSpin();
 
       setTimeout(() => {
         this.optionsService.endSpin();
+
+        this.winnerOptionsNotificationService.updateWinnerOptionIndex();
+        if (this.winnerOption) {
+          this.winnerOptionsNotificationService.openDialog(this.winnerOption);
+        }
       }, SPIN_TIMEOUT_MS);
     }
   }

@@ -4,7 +4,7 @@ import {
   MIN_OPTIONS_NUMBER,
   OptionsService,
   WheelOptionList,
-} from '../options.service';
+} from '../../services/options.service';
 import { MatFormField } from '@angular/material/form-field';
 import { MatError, MatInput } from '@angular/material/input';
 import {
