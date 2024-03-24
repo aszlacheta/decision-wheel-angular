@@ -20,7 +20,7 @@
   }
 
   .title {
-    overflow: hidden;
+    //overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -36,10 +36,15 @@
 
   .actions {
     display: flex;
+    align-items: center;
 
-    button:not(:last-child) {
+    .ngx-color-picker {
+      border: none;
+      width: 30px;
+      height: 32px;
+      border-radius: 5px;
+      cursor: pointer;
       margin-right: 1vw;
     }
   }
-
 }

@@ -5,14 +5,33 @@ import { BehaviorSubject, Subject, take } from 'rxjs';
 export const MIN_OPTIONS_NUMBER = 2;
 export const MAX_OPTIONS_NUMBER = 10;
 
+const DEFAULT_COLORS = ['#cc1616', 'beige'];
+const DEFAULT_TEXT_COLORS = ['white', '#cc1616'];
+
 export class WheelOptionList extends Array<WheelOption> {
   static DEFAULT_NEW_OPTION_TITLE = $localize`:new-option-title:New`;
 
   static DEFAULT_OPTIONS: WheelOption[] = [
-    { title: $localize`:first-default-option-label:pizza` },
-    { title: $localize`:second-default-option-label:pasta` },
-    { title: $localize`:third-default-option-label:ramen` },
-    { title: $localize`:fourth-default-option-label:sushi` },
+    {
+      title: $localize`:first-default-option-label:pizza`,
+      backgroundColor: DEFAULT_COLORS[0 % DEFAULT_COLORS.length],
+      textColor: DEFAULT_TEXT_COLORS[0 % DEFAULT_TEXT_COLORS.length],
+    },
+    {
+      title: $localize`:second-default-option-label:pasta`,
+      backgroundColor: DEFAULT_COLORS[1 % DEFAULT_COLORS.length],
+      textColor: DEFAULT_TEXT_COLORS[1 % DEFAULT_TEXT_COLORS.length],
+    },
+    {
+      title: $localize`:third-default-option-label:ramen`,
+      backgroundColor: DEFAULT_COLORS[2 % DEFAULT_COLORS.length],
+      textColor: DEFAULT_TEXT_COLORS[2 % DEFAULT_TEXT_COLORS.length],
+    },
+    {
+      title: $localize`:fourth-default-option-label:sushi`,
+      backgroundColor: DEFAULT_COLORS[3 % DEFAULT_COLORS.length],
+      textColor: DEFAULT_TEXT_COLORS[3 % DEFAULT_TEXT_COLORS.length],
+    },
   ];
 
   constructor(...options: WheelOption[]) {
@@ -44,6 +63,8 @@ export class OptionsService {
   isAddDisabled: Subject<boolean> = new BehaviorSubject<boolean>(false);
   isRemoveDisabled: Subject<boolean> = new BehaviorSubject<boolean>(false);
 
+  isAdvanced: Subject<boolean> = new BehaviorSubject<boolean>(false);
+
   isSpinning: Subject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor() {
@@ -65,8 +86,10 @@ export class OptionsService {
     const wheelOptions: WheelOption[] = titles
       .filter(title => title.length > 0)
       .filter((title, index) => index < MAX_OPTIONS_NUMBER)
-      .map(title => ({
+      .map((title, index) => ({
         title,
+        backgroundColor: DEFAULT_COLORS[index % DEFAULT_COLORS.length],
+        textColor: DEFAULT_TEXT_COLORS[index % DEFAULT_TEXT_COLORS.length],
       }));
     this.options.next(new WheelOptionList(...wheelOptions));
   }
@@ -75,6 +98,9 @@ export class OptionsService {
     this.options.pipe(take(1)).subscribe((current: WheelOptionList) => {
       const newOption: WheelOption = {
         title: optionTitle ?? WheelOptionList.DEFAULT_NEW_OPTION_TITLE,
+        backgroundColor: DEFAULT_COLORS[current.length % DEFAULT_COLORS.length],
+        textColor:
+          DEFAULT_TEXT_COLORS[current.length % DEFAULT_TEXT_COLORS.length],
       };
       this.options.next(new WheelOptionList(...current, newOption));
     });
@@ -126,6 +152,17 @@ export class OptionsService {
     });
   }
 
+  updateBackgroundColor(
+    index: number,
+    backgroundColor: WheelOption['backgroundColor']
+  ) {
+    this.options.pipe(take(1)).subscribe(options => {
+      if (options[index]) {
+        options[index].backgroundColor = backgroundColor;
+      }
+    });
+  }
+
   startSpin(): void {
     this.isSpinning.next(true);
   }
@@ -135,11 +172,13 @@ export class OptionsService {
   }
 
   private updateLocalStorageCache() {
-    this.options.pipe(take(1)).subscribe(options => {
-      localStorage.setItem(
-        OptionsService.LOCAL_STORAGE_OPTIONS_KEY,
-        JSON.stringify({ options })
-      );
+    this.isAdvanced.subscribe(isAdvanced => {
+      this.options.pipe(take(1)).subscribe(options => {
+        localStorage.setItem(
+          OptionsService.LOCAL_STORAGE_OPTIONS_KEY,
+          JSON.stringify({ options, isAdvanced })
+        );
+      });
     });
   }
 
@@ -149,8 +188,9 @@ export class OptionsService {
     );
 
     if (stringifiedOptions && stringifiedOptions.length > 0) {
-      const { options } = JSON.parse(stringifiedOptions);
+      const { options, isAdvanced } = JSON.parse(stringifiedOptions);
       this.options.next(new WheelOptionList(...options));
+      this.isAdvanced.next(isAdvanced);
     }
   }
 }

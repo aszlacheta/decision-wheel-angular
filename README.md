@@ -21,8 +21,8 @@ See it [here](https://aszlacheta.github.io/decision-wheel-angular/en-US/)!
 - [x] editable options in wheel (with deletion, rename, duplication, drag&drop)
 - [x] shuffle options
 - [x] store data in LocaleStorage
-- [ ] add options' weight
-- [ ] add option to change colors
+- [x] add option to change colors 
+- [ ] add options' weight (quite tricky as all is rendered via CSS only)
 - [ ] CI/CD (test, linters, RN)
 - [ ] RWD
 - [ ] predefined wheels (yes/no, dates, restaurants, types of food)

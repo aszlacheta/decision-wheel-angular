@@ -17,18 +17,20 @@
               matTooltip="Shuffle">
         <mat-icon>shuffle</mat-icon>
       </button>
-      <mat-checkbox [(ngModel)]="isAdvancedOn" [disabled]="(optionsService.isSpinning | async) ?? false"
+      <mat-checkbox (change)="onIsAdvancedChange($event)"
+                    [(ngModel)]="(isAdvanced)"
+                    [disabled]="(optionsService.isSpinning | async) ?? false"
                     class="options-list-advanced-checkbox small"
                     i18n="advanced-mode|Advanced checkbox label">Advanced mode
       </mat-checkbox>
     </div>
-    <div *ngIf="isAdvancedOn" class="options-list-items">
+    <div *ngIf="(optionsService.isAdvanced | async)" class="options-list-items">
       <app-card-options-advanced-list [options]="options"></app-card-options-advanced-list>
     </div>
-    <div *ngIf="!isAdvancedOn" class="options-list-items">
+    <div *ngIf="(optionsService.isAdvanced | async) === false" class="options-list-items">
       <app-card-textarea></app-card-textarea>
     </div>
   </div>
 
-  <app-card-option-advanced-add *ngIf="isAdvancedOn"></app-card-option-advanced-add>
+  <app-card-option-advanced-add *ngIf="(optionsService.isAdvanced | async)"></app-card-option-advanced-add>
 </div>

@@ -1,9 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgForOf } from '@angular/common';
 
-const DEFAULT_COLORS = ['#cc1616', 'beige'];
-const DEFAULT_TEXT_COLORS = ['white', '#cc1616'];
-
 @Component({
   selector: 'app-wheel-option',
   standalone: true,
@@ -16,7 +13,7 @@ export class WheelOptionComponent {
   @Input() title: string;
   @Input() optionsSize: number;
 
-  @Input() backgroundColor?: string | undefined;
+  @Input() backgroundColor: string;
   @Input() textColor?: string | undefined;
 
   get angle(): number {
@@ -33,13 +30,5 @@ export class WheelOptionComponent {
 
   get titleSkewValue(): number {
     return this.skewValue * -1;
-  }
-
-  get defaultBackgroundColor(): string {
-    return DEFAULT_COLORS[this.index % DEFAULT_COLORS.length];
-  }
-
-  get defaultTextColor(): string {
-    return DEFAULT_TEXT_COLORS[this.index % DEFAULT_TEXT_COLORS.length];
   }
 }

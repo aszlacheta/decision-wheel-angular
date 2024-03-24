@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   MatCard,
   MatCardActions,
@@ -14,7 +14,7 @@ import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInput, MatLabel } from '@angular/material/input';
 import { CardTextareaComponent } from '../card-textarea/card-textarea.component';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { WheelOption } from '../wheel-option/wheel-option';
 import {
   MAX_OPTIONS_NUMBER,
@@ -22,7 +22,7 @@ import {
 } from '../../services/options.service';
 import { CommonModule, NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MatCheckbox } from '@angular/material/checkbox';
+import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
 import { CardOptionAdvancedComponent } from '../advanced-view/card-option-advanced/card-option-advanced.component';
 import { CardOptionsAdvancedListComponent } from '../advanced-view/card-options-advanced-list/card-options-advanced-list.component';
 import { CardOptionAdvancedAddComponent } from '../advanced-view/card-option-advanced-add/card-option-advanced-add.component';
@@ -61,23 +61,41 @@ import { MatTooltip } from '@angular/material/tooltip';
   templateUrl: './card-options-list.component.html',
   styleUrl: './card-options-list.component.less',
 })
-export class CardOptionsListComponent implements OnInit {
+export class CardOptionsListComponent implements OnInit, OnDestroy {
   options: Observable<WheelOption[]>;
 
+  optionsSubscription: Subscription;
+  isAdvancedSubscription: Subscription;
+
   isAddDisabled: boolean = false;
-  isAdvancedOn: boolean = false;
+  isAdvanced: boolean = true;
 
   constructor(protected optionsService: OptionsService) {}
 
   ngOnInit() {
     this.options = this.optionsService.options;
 
-    this.options.subscribe(options => {
+    this.optionsSubscription = this.options.subscribe(options => {
       this.isAddDisabled = options.length >= MAX_OPTIONS_NUMBER;
     });
+
+    this.isAdvancedSubscription = this.optionsService.isAdvanced.subscribe(
+      isAdvanced => {
+        this.isAdvanced = isAdvanced;
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.optionsSubscription.unsubscribe();
+    this.isAdvancedSubscription.unsubscribe();
   }
 
   onShuffle() {
     this.optionsService.shuffle();
+  }
+
+  onIsAdvancedChange($event: MatCheckboxChange) {
+    this.optionsService.isAdvanced.next($event.checked);
   }
 }

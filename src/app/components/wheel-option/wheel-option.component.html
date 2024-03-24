@@ -1,8 +1,8 @@
 <div [attr.data-option]=index
-     [style.background-color]="backgroundColor ?? defaultBackgroundColor"
+     [style.background-color]="backgroundColor"
      [style.transform]="optionsSize > 2 && 'rotate(' + (rotateValue) + 'deg) skewY(' + (skewValue) +'deg)'"
      class="option">
   <div
-    [style.color]="textColor ?? defaultTextColor"
+    [style.color]="textColor"
     [style.transform]="optionsSize > 2 &&'skewY(' + (titleSkewValue) +'deg) rotate(' + (angle / 2) + 'deg) '">{{title}}</div>
 </div>
