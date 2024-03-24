@@ -9,7 +9,16 @@
           <span i18n="card-option-added|Options span added label">added</span>
         </span>
       </div>
-      <mat-checkbox [(ngModel)]="isAdvancedOn" [disabled]="isAdvancedDisabled"
+      <button (click)="onShuffle()" [disabled]="(optionsService.isSpinning | async)"
+              aria-label="Shuffle options"
+              class="shuffle-button"
+              i18n-aria-label="shuffle-options-button|Label for toggle button that shuffle options"
+              i18n-matTooltip="shuffle-options-tooltip|Tooltip for toggle button that shuffle options" mat-icon-button
+              matTooltip="Shuffle">
+        <mat-icon>shuffle</mat-icon>
+      </button>
+      <mat-checkbox [(ngModel)]="isAdvancedOn" [disabled]="(optionsService.isSpinning | async) ?? false"
+                    class="options-list-advanced-checkbox small"
                     i18n="advanced-mode|Advanced checkbox label">Advanced mode
       </mat-checkbox>
     </div>

@@ -8,7 +8,7 @@ import {
   MatCardSubtitle,
   MatCardTitle,
 } from '@angular/material/card';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatFormField } from '@angular/material/form-field';
@@ -26,6 +26,8 @@ import { MatCheckbox } from '@angular/material/checkbox';
 import { CardOptionAdvancedComponent } from '../advanced-view/card-option-advanced/card-option-advanced.component';
 import { CardOptionsAdvancedListComponent } from '../advanced-view/card-options-advanced-list/card-options-advanced-list.component';
 import { CardOptionAdvancedAddComponent } from '../advanced-view/card-option-advanced-add/card-option-advanced-add.component';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-card-options-list',
@@ -52,6 +54,9 @@ import { CardOptionAdvancedAddComponent } from '../advanced-view/card-option-adv
     CardOptionAdvancedComponent,
     CardOptionsAdvancedListComponent,
     CardOptionAdvancedAddComponent,
+    MatIconButton,
+    MatIcon,
+    MatTooltip,
   ],
   templateUrl: './card-options-list.component.html',
   styleUrl: './card-options-list.component.less',
@@ -61,9 +66,8 @@ export class CardOptionsListComponent implements OnInit {
 
   isAddDisabled: boolean = false;
   isAdvancedOn: boolean = false;
-  isAdvancedDisabled: boolean = false;
 
-  constructor(private optionsService: OptionsService) {}
+  constructor(protected optionsService: OptionsService) {}
 
   ngOnInit() {
     this.options = this.optionsService.getOptions();
@@ -71,9 +75,9 @@ export class CardOptionsListComponent implements OnInit {
     this.options.subscribe(options => {
       this.isAddDisabled = options.length >= MAX_OPTIONS_NUMBER;
     });
+  }
 
-    this.optionsService.isSpinning.subscribe(isSpinning => {
-      this.isAdvancedDisabled = isSpinning;
-    });
+  onShuffle() {
+    this.optionsService.shuffle();
   }
 }

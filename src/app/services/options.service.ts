@@ -105,6 +105,25 @@ export class OptionsService {
     });
   }
 
+  shuffle() {
+    this.options.pipe(take(1)).subscribe((current: WheelOptionList) => {
+      let currentIndex = current.length,
+        randomIndex;
+
+      while (currentIndex > 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        [current[currentIndex], current[randomIndex]] = [
+          current[randomIndex],
+          current[currentIndex],
+        ];
+      }
+
+      this.options.next(current);
+    });
+  }
+
   startSpin(): void {
     this.isSpinning.next(true);
   }

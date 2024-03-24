@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   MAX_OPTIONS_NUMBER,
   MIN_OPTIONS_NUMBER,
@@ -14,8 +14,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { take } from 'rxjs';
 import { NgIf } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 class CardTextareaValue extends Array<string> {
   private static Divider = '\n';
@@ -52,7 +52,7 @@ interface CardTextareaFormValues {
   templateUrl: './card-textarea.component.html',
   styleUrl: './card-textarea.component.less',
 })
-export class CardTextareaComponent implements OnInit {
+export class CardTextareaComponent implements OnInit, OnDestroy {
   form = new FormGroup({
     options: new FormControl<CardTextareaValue>(
       {
@@ -67,29 +67,37 @@ export class CardTextareaComponent implements OnInit {
       }
     ),
   });
+  optionsSubscription: Subscription;
+  isSpinningSubscription: Subscription;
   protected readonly MIN_OPTIONS_NUMBER = MIN_OPTIONS_NUMBER;
   protected readonly MAX_OPTIONS_NUMBER = MAX_OPTIONS_NUMBER;
 
   constructor(private optionsService: OptionsService) {}
 
   ngOnInit() {
-    this.optionsService
+    this.optionsSubscription = this.optionsService
       .getOptions()
-      .pipe(take(1))
       .subscribe((options: WheelOptionList) => {
         this.form.controls['options'].setValue(
           new CardTextareaValue(...options.toNames())
         );
       });
-    this.optionsService.isSpinning.subscribe(isSpinning => {
-      const enableOrDisableMethod: keyof AbstractControl = isSpinning
-        ? 'disable'
-        : 'enable';
-      this.form.controls.options[enableOrDisableMethod]?.();
-    });
+    this.isSpinningSubscription = this.optionsService.isSpinning.subscribe(
+      isSpinning => {
+        const enableOrDisableMethod: keyof AbstractControl = isSpinning
+          ? 'disable'
+          : 'enable';
+        this.form.controls.options[enableOrDisableMethod]?.();
+      }
+    );
     this.form.valueChanges.subscribe(formChanges => {
       this.onOptionsChange(formChanges as CardTextareaFormValues);
     });
+  }
+
+  ngOnDestroy() {
+    this.optionsSubscription.unsubscribe();
+    this.isSpinningSubscription.unsubscribe();
   }
 
   private onOptionsChange(formChanges: CardTextareaFormValues): void {
