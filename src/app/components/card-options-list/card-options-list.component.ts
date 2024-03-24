@@ -70,7 +70,7 @@ export class CardOptionsListComponent implements OnInit {
   constructor(protected optionsService: OptionsService) {}
 
   ngOnInit() {
-    this.options = this.optionsService.getOptions();
+    this.options = this.optionsService.options;
 
     this.options.subscribe(options => {
       this.isAddDisabled = options.length >= MAX_OPTIONS_NUMBER;

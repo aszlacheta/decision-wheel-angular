@@ -75,13 +75,13 @@ export class CardTextareaComponent implements OnInit, OnDestroy {
   constructor(private optionsService: OptionsService) {}
 
   ngOnInit() {
-    this.optionsSubscription = this.optionsService
-      .getOptions()
-      .subscribe((options: WheelOptionList) => {
+    this.optionsSubscription = this.optionsService.options.subscribe(
+      (options: WheelOptionList) => {
         this.form.controls['options'].setValue(
           new CardTextareaValue(...options.toNames())
         );
-      });
+      }
+    );
     this.isSpinningSubscription = this.optionsService.isSpinning.subscribe(
       isSpinning => {
         const enableOrDisableMethod: keyof AbstractControl = isSpinning

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WheelOption } from '../components/wheel-option/wheel-option';
-import { BehaviorSubject, Observable, Subject, take } from 'rxjs';
+import { BehaviorSubject, Subject, take } from 'rxjs';
 
 export const MIN_OPTIONS_NUMBER = 2;
 export const MAX_OPTIONS_NUMBER = 10;
@@ -33,6 +33,8 @@ export class WheelOptionList extends Array<WheelOption> {
   providedIn: 'root',
 })
 export class OptionsService {
+  static LOCAL_STORAGE_OPTIONS_KEY = 'decision-wheel-angular-options';
+
   options: Subject<WheelOptionList> = new BehaviorSubject<WheelOptionList>(
     new WheelOptionList(...WheelOptionList.DEFAULT_OPTIONS)
   );
@@ -45,6 +47,8 @@ export class OptionsService {
   isSpinning: Subject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor() {
+    this.loadFromLocalStorage();
+
     this.options.subscribe((current: WheelOptionList) => {
       this.isTooLow = current.length < MIN_OPTIONS_NUMBER;
       this.isTooHigh = current.length > MAX_OPTIONS_NUMBER;
@@ -52,11 +56,9 @@ export class OptionsService {
       this.isDisabled.next(this.isTooLow || this.isTooHigh);
       this.isAddDisabled.next(current.length >= MAX_OPTIONS_NUMBER);
       this.isRemoveDisabled.next(current.length <= MIN_OPTIONS_NUMBER);
-    });
-  }
 
-  getOptions(): Observable<WheelOptionList> {
-    return this.options;
+      this.updateLocalStorageCache();
+    });
   }
 
   updateTitles(titles: string[]) {
@@ -130,5 +132,25 @@ export class OptionsService {
 
   endSpin(): void {
     this.isSpinning.next(false);
+  }
+
+  private updateLocalStorageCache() {
+    this.options.pipe(take(1)).subscribe(options => {
+      localStorage.setItem(
+        OptionsService.LOCAL_STORAGE_OPTIONS_KEY,
+        JSON.stringify({ options })
+      );
+    });
+  }
+
+  private loadFromLocalStorage() {
+    const stringifiedOptions = localStorage.getItem(
+      OptionsService.LOCAL_STORAGE_OPTIONS_KEY
+    );
+
+    if (stringifiedOptions && stringifiedOptions.length > 0) {
+      const { options } = JSON.parse(stringifiedOptions);
+      this.options.next(new WheelOptionList(...options));
+    }
   }
 }

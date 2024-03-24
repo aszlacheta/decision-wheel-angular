@@ -20,9 +20,9 @@ See it [here](https://aszlacheta.github.io/decision-wheel-angular/en-US/)!
 - [x] mute sounds
 - [x] editable options in wheel (with deletion, rename, duplication, drag&drop)
 - [x] shuffle options
+- [x] store data in LocaleStorage
 - [ ] add options' weight
-- [ ] change colors
+- [ ] add option to change colors
 - [ ] CI/CD (test, linters, RN)
-- [ ] store data in LocaleStorage
 - [ ] RWD
 - [ ] predefined wheels (yes/no, dates, restaurants, types of food)

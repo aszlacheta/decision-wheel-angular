@@ -44,7 +44,7 @@ export class WheelComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.options = this.optionsService.getOptions();
+    this.options = this.optionsService.options;
     this.isDisabledSubscription = this.optionsService.isDisabled.subscribe(
       isDisabled => {
         this.isDisabled = isDisabled;
