@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,6 +8,7 @@ export class WheelSoundsService {
   tickSound = new Audio('../../assets/tick.mp3');
   tadaSound = new Audio('../../assets/tada.mp3');
   playbackRate = 0.55;
+  isMuted: Subject<boolean> = new BehaviorSubject(false);
 
   timeout: ReturnType<typeof setTimeout>;
 
@@ -20,6 +22,11 @@ export class WheelSoundsService {
 
   constructor() {
     this.tickSound.playbackRate = this.playbackRate;
+
+    this.isMuted.subscribe(isMuted => {
+      this.tickSound.muted = isMuted;
+      this.tadaSound.muted = isMuted;
+    });
   }
 
   /**
@@ -45,6 +52,14 @@ export class WheelSoundsService {
     };
 
     this.timeout = setTimeout(loop, this.bezierCalculatedTimes[currentIndex]);
+  }
+
+  mute() {
+    this.isMuted.next(true);
+  }
+
+  unmute() {
+    this.isMuted.next(false);
   }
 
   /**
