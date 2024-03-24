@@ -1,14 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardTextareaComponent } from './card-textarea.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('OptionComponent', () => {
+describe('CardTextArea', () => {
   let component: CardTextareaComponent;
   let fixture: ComponentFixture<CardTextareaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CardTextareaComponent],
+      imports: [CardTextareaComponent, NoopAnimationsModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CardTextareaComponent);

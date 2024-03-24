@@ -1,6 +1,6 @@
 <div [ngClass]="{'disabled': isDisabled, 'container': true}">
-  <div (click)="onSpin()" [class]="'rotate'"
-       [style.transform]="'rotate(' + (rotationDegrees) + 'deg)'">
+  <div (click)="onSpin()" (keydown)="onSpin()" [class]="'rotate'" [style.transform]="'rotate(' + (rotationDegrees) + 'deg)'"
+       tabindex="0">
     <div class="circles-container">
       <div *ngFor="let circle of circles; index as i"
            [style.transform]="'rotate(' + (i * (360 / circles.length)) + 'deg)'"

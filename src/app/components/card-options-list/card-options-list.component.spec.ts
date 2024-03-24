@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardOptionsListComponent } from './card-options-list.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('OptionsListComponent', () => {
   let component: CardOptionsListComponent;
@@ -8,7 +9,7 @@ describe('OptionsListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CardOptionsListComponent],
+      imports: [CardOptionsListComponent, NoopAnimationsModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CardOptionsListComponent);
