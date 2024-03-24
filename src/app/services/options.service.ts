@@ -5,14 +5,16 @@ import { BehaviorSubject, Observable, Subject, take } from 'rxjs';
 export const MIN_OPTIONS_NUMBER = 2;
 export const MAX_OPTIONS_NUMBER = 10;
 
-export const DEFAULT_OPTIONS = [
-  { id: 1, title: 'first' },
-  { id: 2, title: 'second' },
-  { id: 3, title: 'third' },
-  { id: 4, title: 'fourth' },
-];
-
 export class WheelOptionList extends Array<WheelOption> {
+  static DEFAULT_NEW_OPTION_TITLE = $localize`:new-option-title:New`;
+
+  static DEFAULT_OPTIONS: WheelOption[] = [
+    { title: $localize`:first-default-option-label:pizza` },
+    { title: $localize`:second-default-option-label:pasta` },
+    { title: $localize`:third-default-option-label:ramen` },
+    { title: $localize`:fourth-default-option-label:sushi` },
+  ];
+
   constructor(...options: WheelOption[]) {
     super();
     this.push(...options);
@@ -32,11 +34,13 @@ export class WheelOptionList extends Array<WheelOption> {
 })
 export class OptionsService {
   options: Subject<WheelOptionList> = new BehaviorSubject<WheelOptionList>(
-    new WheelOptionList(...DEFAULT_OPTIONS)
+    new WheelOptionList(...WheelOptionList.DEFAULT_OPTIONS)
   );
   isTooLow: boolean = false;
   isTooHigh: boolean = false;
   isDisabled: Subject<boolean> = new BehaviorSubject<boolean>(false);
+  isAddDisabled: Subject<boolean> = new BehaviorSubject<boolean>(false);
+  isRemoveDisabled: Subject<boolean> = new BehaviorSubject<boolean>(false);
 
   isSpinning: Subject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -46,6 +50,8 @@ export class OptionsService {
       this.isTooHigh = current.length > MAX_OPTIONS_NUMBER;
 
       this.isDisabled.next(this.isTooLow || this.isTooHigh);
+      this.isAddDisabled.next(current.length >= MAX_OPTIONS_NUMBER);
+      this.isRemoveDisabled.next(current.length <= MIN_OPTIONS_NUMBER);
     });
   }
 
@@ -54,23 +60,19 @@ export class OptionsService {
   }
 
   updateTitles(titles: string[]) {
-    this.options.pipe(take(1)).subscribe(current => {
-      const wheelOptions: WheelOption[] = titles
-        .filter(title => title.length > 0)
-        .filter((title, index) => index < MAX_OPTIONS_NUMBER)
-        .map((title, index) => ({
-          title,
-          id: current[index]?.id ?? index + 1,
-        }));
-      this.options.next(new WheelOptionList(...wheelOptions));
-    });
+    const wheelOptions: WheelOption[] = titles
+      .filter(title => title.length > 0)
+      .filter((title, index) => index < MAX_OPTIONS_NUMBER)
+      .map(title => ({
+        title,
+      }));
+    this.options.next(new WheelOptionList(...wheelOptions));
   }
 
-  addOption(optionTitle: WheelOption['title']): void {
+  addOption(optionTitle?: WheelOption['title']): void {
     this.options.pipe(take(1)).subscribe((current: WheelOptionList) => {
       const newOption: WheelOption = {
-        id: current.length + 1,
-        title: optionTitle,
+        title: optionTitle ?? WheelOptionList.DEFAULT_NEW_OPTION_TITLE,
       };
       this.options.next(new WheelOptionList(...current, newOption));
     });
@@ -79,7 +81,27 @@ export class OptionsService {
   removeOption(index: number): void {
     this.options.pipe(take(1)).subscribe((current: WheelOptionList) => {
       current.splice(index, 1);
+      current.map((option, index) => ({ ...option, index }));
+      const newOptions = current.map(option => ({
+        ...option,
+      }));
+      this.options.next(new WheelOptionList(...newOptions));
+    });
+  }
+
+  renameOption(index: number, title: WheelOption['title']): void {
+    this.options.pipe(take(1)).subscribe((current: WheelOptionList) => {
+      current[index].title = title;
       this.options.next(current);
+    });
+  }
+
+  duplicate(index: number) {
+    this.options.pipe(take(1)).subscribe((current: WheelOptionList) => {
+      if (current.length < MAX_OPTIONS_NUMBER) {
+        current.splice(index, 0, { ...current[index] });
+        this.options.next(current);
+      }
     });
   }
 

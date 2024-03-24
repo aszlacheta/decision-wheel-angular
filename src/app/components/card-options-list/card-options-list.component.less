@@ -9,6 +9,7 @@
 }
 
 .options-list-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-width: 300px;
@@ -19,6 +20,7 @@
   .options-list-roll {
     z-index: 10;
     width: 102%;
+    min-height: 60px;
     height: 60px;
     margin-left: -1%;
     border-radius: 10px;
@@ -30,10 +32,11 @@
 
   .options-list-content {
     position: relative;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     flex: 1;
+    max-height: calc(100% - 60px);
+    overflow: hidden;
     padding: 20px;
     margin-top: -5px;
     border-radius: 5px;
@@ -109,6 +112,7 @@
       flex: 1;
       flex-direction: column;
       z-index: 100;
+      overflow: auto;
     }
   }
 }

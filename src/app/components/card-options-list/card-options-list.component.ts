@@ -23,7 +23,9 @@ import {
 import { CommonModule, NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { CardOptionAdvancedComponent } from '../card-option-advanced/card-option-advanced.component';
+import { CardOptionAdvancedComponent } from '../advanced-view/card-option-advanced/card-option-advanced.component';
+import { CardOptionsAdvancedListComponent } from '../advanced-view/card-options-advanced-list/card-options-advanced-list.component';
+import { CardOptionAdvancedAddComponent } from '../advanced-view/card-option-advanced-add/card-option-advanced-add.component';
 
 @Component({
   selector: 'app-card-options-list',
@@ -48,13 +50,15 @@ import { CardOptionAdvancedComponent } from '../card-option-advanced/card-option
     FormsModule,
     MatCheckbox,
     CardOptionAdvancedComponent,
+    CardOptionsAdvancedListComponent,
+    CardOptionAdvancedAddComponent,
   ],
   templateUrl: './card-options-list.component.html',
   styleUrl: './card-options-list.component.less',
 })
 export class CardOptionsListComponent implements OnInit {
   options: Observable<WheelOption[]>;
-  newOptionTitle: string = 'test';
+
   isAddDisabled: boolean = false;
   isAdvancedOn: boolean = false;
   isAdvancedDisabled: boolean = false;
@@ -71,9 +75,5 @@ export class CardOptionsListComponent implements OnInit {
     this.optionsService.isSpinning.subscribe(isSpinning => {
       this.isAdvancedDisabled = isSpinning;
     });
-  }
-
-  addOption() {
-    this.optionsService.addOption(this.newOptionTitle);
   }
 }

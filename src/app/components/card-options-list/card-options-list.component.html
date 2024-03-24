@@ -14,11 +14,12 @@
       </mat-checkbox>
     </div>
     <div *ngIf="isAdvancedOn" class="options-list-items">
-      <app-card-option-advanced *ngFor="let option of options | async; index as i" [index]="i"
-                                [title]="option.title"></app-card-option-advanced>
+      <app-card-options-advanced-list [options]="options"></app-card-options-advanced-list>
     </div>
     <div *ngIf="!isAdvancedOn" class="options-list-items">
       <app-card-textarea></app-card-textarea>
     </div>
   </div>
+
+  <app-card-option-advanced-add *ngIf="isAdvancedOn"></app-card-option-advanced-add>
 </div>
