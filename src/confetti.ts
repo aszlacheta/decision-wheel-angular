@@ -11,53 +11,11 @@ const spread = 40,
   dThetaMax = 0.7 - dThetaMin;
 
 export default class Confetti {
-  timer = undefined;
-  frame = undefined;
+  timer: ReturnType<typeof setTimeout> | undefined = undefined;
+  frame: number | undefined = undefined;
   confetti: Confetto[] = [];
 
   container: HTMLElement;
-  // @ts-ignore
-  colorThemes = [
-    () => {
-      return this.color(
-        (200 * Math.random()) | 0,
-        (200 * Math.random()) | 0,
-        (200 * Math.random()) | 0
-      );
-    },
-    () => {
-      const black = (200 * Math.random()) | 0;
-      return this.color(200, black, black);
-    },
-    () => {
-      const black = (200 * Math.random()) | 0;
-      return this.color(black, 200, black);
-    },
-    () => {
-      const black = (200 * Math.random()) | 0;
-      return this.color(black, black, 200);
-    },
-    () => {
-      return this.color(200, 100, (200 * Math.random()) | 0);
-    },
-    () => {
-      return this.color((200 * Math.random()) | 0, 200, 200);
-    },
-    () => {
-      const black = (256 * Math.random()) | 0;
-      return this.color(black, black, black);
-    },
-    () => {
-      return this.colorThemes[Math.random() < 0.5 ? 1 : 2]();
-    },
-    () => {
-      return this.colorThemes[Math.random() < 0.5 ? 3 : 5]();
-    },
-    // @ts-ignore
-    () => {
-      return this.colorThemes[Math.random() < 0.5 ? 2 : 4]();
-    },
-  ];
 
   constructor() {
     this.container = document.createElement('div');
@@ -70,34 +28,36 @@ export default class Confetti {
     this.container.style.zIndex = '9999';
   }
 
-  // @ts-ignore
-  color(r, g, b) {
+  get theme() {
+    return this.color(
+      (200 * Math.random()) | 0,
+      (200 * Math.random()) | 0,
+      (200 * Math.random()) | 0
+    );
+  }
+
+  color(r: number, g: number, b: number): string {
     return 'rgb(' + r + ',' + g + ',' + b + ')';
+  }
+
+  loadManyConfetto() {
+    const confetto = new Confetto(this.theme);
+    this.confetti.push(confetto);
+    this.container.appendChild(confetto.outer);
+    this.timer = setTimeout(
+      this.loadManyConfetto.bind(this),
+      spread * Math.random()
+    );
   }
 
   poof() {
     if (!this.frame) {
-      // Append the container
       document.body.appendChild(this.container);
-      const that = this;
+      this.loadManyConfetto();
 
-      // Add confetti
-      const theme = this.colorThemes[0];
-      (function addConfetto() {
-        const confetto = new Confetto(theme);
-        that.confetti.push(confetto);
-        that.container.appendChild(confetto.outer);
-        // @ts-ignore
-        that.timer = setTimeout(addConfetto, spread * Math.random());
-      })();
+      let prev: number | undefined = undefined;
 
-      // Start the loop
-      // @ts-ignore
-      let prev = undefined;
-
-      // @ts-ignore
-      const loop = timestamp => {
-        // @ts-ignore
+      const loop = (timestamp: number): number | void => {
         const delta = prev ? timestamp - prev : 0;
         prev = timestamp;
         const height = window.innerHeight;
@@ -110,7 +70,6 @@ export default class Confetti {
         }
 
         if (this.timer || this.confetti.length) {
-          // @ts-ignore
           return (this.frame = requestAnimationFrame(loop));
         }
 
@@ -128,27 +87,24 @@ export default class Confetti {
 }
 
 class Confetto {
-  frame;
+  frame: number;
   outer: HTMLDivElement;
   inner: HTMLDivElement;
 
-  axis;
-  theta;
-  dTheta;
-  x;
-  y;
-  dx;
-  dy;
-  // @ts-ignore
-  splineX;
-  // @ts-ignore
-  splineY;
+  axis: string;
+  theta: number;
+  dTheta: number;
+  x: number;
+  y: number;
+  dx: number;
+  dy: number;
+  splineX: number[];
+  splineY: number[];
 
   radius = 1 / eccentricity;
   radius2 = this.radius + this.radius;
 
-  // @ts-ignore
-  constructor(theme) {
+  constructor(theme: string) {
     this.frame = 0;
     this.outer = document.createElement('div');
     this.inner = document.createElement('div');
@@ -161,7 +117,7 @@ class Confetto {
     outerStyle.height = sizeMin + sizeMax * Math.random() + 'px';
     innerStyle.width = '100%';
     innerStyle.height = '100%';
-    innerStyle.backgroundColor = theme();
+    innerStyle.backgroundColor = theme;
 
     outerStyle.perspective = '50px';
     outerStyle.transform = 'rotate(' + 360 * Math.random() + 'deg)';
@@ -243,13 +199,11 @@ class Confetto {
     return spline.sort();
   }
 
-  // @ts-ignore
-  interpolation(a, b, t) {
+  interpolation(a: number, b: number, t: number): number {
     return ((1 - Math.cos(Math.PI * t)) / 2) * (b - a) + a;
   }
 
-  // @ts-ignore
-  update(height, delta) {
+  update(height: number, delta: number) {
     this.frame += delta;
     this.x += this.dx * delta;
     this.y += this.dy * delta;

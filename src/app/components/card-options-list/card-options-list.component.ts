@@ -16,7 +16,10 @@ import { MatInput, MatLabel } from '@angular/material/input';
 import { CardTextareaComponent } from '../card-textarea/card-textarea.component';
 import { Observable } from 'rxjs';
 import { WheelOption } from '../wheel-option/wheel-option';
-import { MAX_OPTIONS_NUMBER, OptionsService } from '../options.service';
+import {
+  MAX_OPTIONS_NUMBER,
+  OptionsService,
+} from '../../services/options.service';
 import { CommonModule, NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';

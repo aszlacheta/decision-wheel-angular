@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TickSoundService } from './tick-sound.service';
+import { WheelSoundsService } from './wheel-sounds.service';
 
-describe('TickSoundService', () => {
-  let service: TickSoundService;
+describe('WheelSoundsService', () => {
+  let service: WheelSoundsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TickSoundService);
+    service = TestBed.inject(WheelSoundsService);
   });
 
   it('should be created', () => {

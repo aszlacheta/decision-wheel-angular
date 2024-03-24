@@ -3,9 +3,9 @@ import { CommonModule, NgForOf } from '@angular/common';
 import { WheelOptionComponent } from '../wheel-option/wheel-option.component';
 import { Observable, take } from 'rxjs';
 import { WheelOption } from '../wheel-option/wheel-option';
-import { OptionsService } from '../options.service';
-import { WinnerOptionNotificationService } from '../winner-option-notification.service';
-import { TickSoundService } from '../tick-sound.service';
+import { OptionsService } from '../../services/options.service';
+import { WinnerOptionNotificationService } from '../../services/winner-option-notification.service';
+import { WheelSoundsService } from '../../services/wheel-sounds.service';
 
 const ROTATION_DEGREES_MIN: number = 1500;
 const ROTATION_DEGREES_MAX: number = 2500;
@@ -30,7 +30,7 @@ export class WheelComponent implements OnInit {
   constructor(
     private optionsService: OptionsService,
     private winnerOptionsNotificationService: WinnerOptionNotificationService,
-    private tickSoundService: TickSoundService
+    private tickSoundService: WheelSoundsService
   ) {}
 
   get rotationRandomDegrees() {

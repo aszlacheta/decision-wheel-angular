@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { WinnerOptionNotificationComponent } from './winner-option-notification/winner-option-notification.component';
+import { WinnerOptionNotificationComponent } from '../components/winner-option-notification/winner-option-notification.component';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { WheelOption } from './wheel-option/wheel-option';
-import Confetti from '../confetti';
+import { WheelOption } from '../components/wheel-option/wheel-option';
+import Confetti from '../../confetti';
 
 const WINNER_NOT_DEFINED_INDEX = -1;
 

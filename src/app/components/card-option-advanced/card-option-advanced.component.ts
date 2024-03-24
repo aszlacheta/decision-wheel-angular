@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatMiniFabButton } from '@angular/material/button';
-import { MIN_OPTIONS_NUMBER, OptionsService } from '../options.service';
+import {
+  MIN_OPTIONS_NUMBER,
+  OptionsService,
+} from '../../services/options.service';
 
 @Component({
   selector: 'app-card-option-advanced',

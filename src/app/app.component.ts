@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { WheelComponent } from './wheel/wheel.component';
-import { CardOptionsListComponent } from './card-options-list/card-options-list.component';
+import { WheelComponent } from './components/wheel/wheel.component';
+import { CardOptionsListComponent } from './components/card-options-list/card-options-list.component';
 
 @Component({
   selector: 'app-root',
