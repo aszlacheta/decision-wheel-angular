@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CardOptionsListComponent } from './card-options-list.component';
+import { CardOptionAdvancedEditComponent } from './card-option-advanced-edit.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('OptionsListComponent', () => {
-  let component: CardOptionsListComponent;
-  let fixture: ComponentFixture<CardOptionsListComponent>;
+describe('CardOptionAdvancedEditComponent', () => {
+  let component: CardOptionAdvancedEditComponent;
+  let fixture: ComponentFixture<CardOptionAdvancedEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CardOptionsListComponent, NoopAnimationsModule],
+      imports: [CardOptionAdvancedEditComponent, NoopAnimationsModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CardOptionsListComponent);
+    fixture = TestBed.createComponent(CardOptionAdvancedEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
